@@ -576,7 +576,7 @@ Base.eachmatch(lab::L, A::LabelledVector{L}, order::Ordering = Unordered) where 
     LabelledIterator(order, A, lab)
 
 """
-    collect(A::LabelledVector{L,V}, lab::L, order::Ordering = Unordered) -> vals::Vector{V}
+    collect(lab::L, A::LabelledVector{L,V}, order::Ordering = Unordered) -> vals::Vector{V}
 
 yields a vector of the values of `A` labelled by `lab` and such that their
 indices in `A` are sorted according to `order` (one one of `Forward`,
@@ -584,7 +584,7 @@ indices in `A` are sorted according to `order` (one one of `Forward`,
 is slower than collectiong unordered values which is the default.
 
 """
-function Base.collect(A::LabelledVector{L,V}, lab::L, order::Ordering = Unordered) where {L,V}
+function Base.collect(lab::L, A::LabelledVector{L,V}, order::Ordering = Unordered) where {L,V}
     key = hash(lab)
     start_index = get_first(A, key)
     n = unsafe_count(A, lab, key, start_index)

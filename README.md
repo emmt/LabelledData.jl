@@ -170,15 +170,15 @@ eachmatch(lab, A, Unordered)
 To retrieve all values with a given label in unspecific order, do:
 
 ``` julia
-collect(A, lab::L) -> vals::Vector{V}
+collect(lab, A)
 ```
 
 A third argument may be specified to retrieve the values in a given order:
 
 ``` julia
-collect(A, lab, Forward)  # all values labelled by `lab` in order of increasing indices
-collect(A, lab, Reverse)  # all values labelled by `lab` in order of deccreasing indices
-collect(A, lab, Unorderd) # all values labelled by `lab` in unspecific order
+collect(lab, A, Forward)  # all values labelled by `lab` in order of increasing indices
+collect(lab, A, Reverse)  # all values labelled by `lab` in order of deccreasing indices
+collect(lab, A, Unorderd) # all values labelled by `lab` in unspecific order
 ```
 
 Counting the number of entries with a given label is done by one of the

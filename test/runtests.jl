@@ -45,42 +45,42 @@ _findall(c::Char, s::AbstractString) = findall(x -> x == c, collect(s))
         @test A["d"] === get(A, "d", nothing)
         @test_throws KeyError A["@"]
         @test get(A, SubString("Julia", 5:5), nothing) == get(A, "a", nothing)
-        @test collect(A, "a", Forward) == _findall('a', text)
-        @test collect(A, "b", Forward) == _findall('b', text)
-        @test collect(A, "c", Forward) == _findall('c', text)
-        @test collect(A, "d", Forward) == _findall('d', text)
-        @test collect(A, "@", Forward) == _findall('@', text)
-        @test collect(A, "a", Reverse) == reverse(_findall('a', text))
-        @test collect(A, "b", Reverse) == reverse(_findall('b', text))
-        @test collect(A, "c", Reverse) == reverse(_findall('c', text))
-        @test collect(A, "d", Reverse) == reverse(_findall('d', text))
-        @test collect(A, "@", Reverse) == reverse(_findall('@', text))
-        @test sort(collect(A, "a")) == _findall('a', text)
-        @test sort(collect(A, "b")) == _findall('b', text)
-        @test sort(collect(A, "c")) == _findall('c', text)
-        @test sort(collect(A, "d")) == _findall('d', text)
-        @test sort(collect(A, "@")) == _findall('@', text)
+        @test collect("a", A, Forward) == _findall('a', text)
+        @test collect("b", A, Forward) == _findall('b', text)
+        @test collect("c", A, Forward) == _findall('c', text)
+        @test collect("d", A, Forward) == _findall('d', text)
+        @test collect("@", A, Forward) == _findall('@', text)
+        @test collect("a", A, Reverse) == reverse(_findall('a', text))
+        @test collect("b", A, Reverse) == reverse(_findall('b', text))
+        @test collect("c", A, Reverse) == reverse(_findall('c', text))
+        @test collect("d", A, Reverse) == reverse(_findall('d', text))
+        @test collect("@", A, Reverse) == reverse(_findall('@', text))
+        @test sort(collect("a", A)) == _findall('a', text)
+        @test sort(collect("b", A)) == _findall('b', text)
+        @test sort(collect("c", A)) == _findall('c', text)
+        @test sort(collect("d", A)) == _findall('d', text)
+        @test sort(collect("@", A)) == _findall('@', text)
         # The following tests work because the value is also the index.
-        @test collect(eachmatch("a", A, Forward)) == vals[collect(A, "a", Forward)]
-        @test collect(eachmatch("b", A, Forward)) == vals[collect(A, "b", Forward)]
-        @test collect(eachmatch("c", A, Forward)) == vals[collect(A, "c", Forward)]
-        @test collect(eachmatch("d", A, Forward)) == vals[collect(A, "d", Forward)]
-        @test collect(eachmatch("@", A, Forward)) == vals[collect(A, "@", Forward)]
-        @test collect(eachmatch("a", A, Reverse)) == vals[collect(A, "a", Reverse)]
-        @test collect(eachmatch("b", A, Reverse)) == vals[collect(A, "b", Reverse)]
-        @test collect(eachmatch("c", A, Reverse)) == vals[collect(A, "c", Reverse)]
-        @test collect(eachmatch("d", A, Reverse)) == vals[collect(A, "d", Reverse)]
-        @test collect(eachmatch("@", A, Reverse)) == vals[collect(A, "@", Reverse)]
-        @test collect(reverse(eachmatch("a", A, Forward))) == vals[collect(A, "a", Reverse)]
-        @test collect(reverse(eachmatch("b", A, Forward))) == vals[collect(A, "b", Reverse)]
-        @test collect(reverse(eachmatch("c", A, Forward))) == vals[collect(A, "c", Reverse)]
-        @test collect(reverse(eachmatch("d", A, Forward))) == vals[collect(A, "d", Reverse)]
-        @test collect(reverse(eachmatch("@", A, Forward))) == vals[collect(A, "@", Reverse)]
-        @test collect(reverse(eachmatch("a", A, Reverse))) == vals[collect(A, "a", Forward)]
-        @test collect(reverse(eachmatch("b", A, Reverse))) == vals[collect(A, "b", Forward)]
-        @test collect(reverse(eachmatch("c", A, Reverse))) == vals[collect(A, "c", Forward)]
-        @test collect(reverse(eachmatch("d", A, Reverse))) == vals[collect(A, "d", Forward)]
-        @test collect(reverse(eachmatch("@", A, Reverse))) == vals[collect(A, "@", Forward)]
+        @test collect(eachmatch("a", A, Forward)) == vals[collect("a", A, Forward)]
+        @test collect(eachmatch("b", A, Forward)) == vals[collect("b", A, Forward)]
+        @test collect(eachmatch("c", A, Forward)) == vals[collect("c", A, Forward)]
+        @test collect(eachmatch("d", A, Forward)) == vals[collect("d", A, Forward)]
+        @test collect(eachmatch("@", A, Forward)) == vals[collect("@", A, Forward)]
+        @test collect(eachmatch("a", A, Reverse)) == vals[collect("a", A, Reverse)]
+        @test collect(eachmatch("b", A, Reverse)) == vals[collect("b", A, Reverse)]
+        @test collect(eachmatch("c", A, Reverse)) == vals[collect("c", A, Reverse)]
+        @test collect(eachmatch("d", A, Reverse)) == vals[collect("d", A, Reverse)]
+        @test collect(eachmatch("@", A, Reverse)) == vals[collect("@", A, Reverse)]
+        @test collect(reverse(eachmatch("a", A, Forward))) == vals[collect("a", A, Reverse)]
+        @test collect(reverse(eachmatch("b", A, Forward))) == vals[collect("b", A, Reverse)]
+        @test collect(reverse(eachmatch("c", A, Forward))) == vals[collect("c", A, Reverse)]
+        @test collect(reverse(eachmatch("d", A, Forward))) == vals[collect("d", A, Reverse)]
+        @test collect(reverse(eachmatch("@", A, Forward))) == vals[collect("@", A, Reverse)]
+        @test collect(reverse(eachmatch("a", A, Reverse))) == vals[collect("a", A, Forward)]
+        @test collect(reverse(eachmatch("b", A, Reverse))) == vals[collect("b", A, Forward)]
+        @test collect(reverse(eachmatch("c", A, Reverse))) == vals[collect("c", A, Forward)]
+        @test collect(reverse(eachmatch("d", A, Reverse))) == vals[collect("d", A, Forward)]
+        @test collect(reverse(eachmatch("@", A, Reverse))) == vals[collect("@", A, Forward)]
     end
     @testset "Labelled vectors with computed labels" begin
         # Write your tests here.
@@ -111,11 +111,11 @@ _findall(c::Char, s::AbstractString) = findall(x -> x == c, collect(s))
         @test A["c"] === get(A, "c", nothing)
         @test A["d"] === get(A, "d", nothing)
         @test_throws KeyError A["@"]
-        @test sort(collect(A, "a")) == map(i -> (SubString(text,i:i), i), _findall('a', text))
-        @test sort(collect(A, "b")) == map(i -> (SubString(text,i:i), i), _findall('b', text))
-        @test sort(collect(A, "c")) == map(i -> (SubString(text,i:i), i), _findall('c', text))
-        @test sort(collect(A, "d")) == map(i -> (SubString(text,i:i), i), _findall('d', text))
-        @test sort(collect(A, "@")) == map(i -> (SubString(text,i:i), i), _findall('@', text))
+        @test sort(collect("a", A)) == map(i -> (SubString(text,i:i), i), _findall('a', text))
+        @test sort(collect("b", A)) == map(i -> (SubString(text,i:i), i), _findall('b', text))
+        @test sort(collect("c", A)) == map(i -> (SubString(text,i:i), i), _findall('c', text))
+        @test sort(collect("d", A)) == map(i -> (SubString(text,i:i), i), _findall('d', text))
+        @test sort(collect("@", A)) == map(i -> (SubString(text,i:i), i), _findall('@', text))
     end
 end
 end # module
